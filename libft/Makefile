@@ -6,13 +6,13 @@
 #    By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/24 18:26:55 by gamoreno          #+#    #+#              #
-#    Updated: 2022/08/15 16:56:38 by gamoreno         ###   ########.fr        #
+#    Updated: 2022/09/30 20:11:30 by gamoreno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### Compilation ###
 
-CC	= gcc
+CC	= cc
 CFLAGS	= -Wall -Wextra -Werror -I.
 
 ### Executable ###
@@ -45,22 +45,26 @@ CYAN        = \033[1;36m
 
 ### RULES ###
 
-all:		$(NAME)
+all:		tmp $(NAME)
 
 $(NAME):	$(OBJS)
 		ar rcs $(NAME) $(OBJS)
 		@echo "$(GREEN)libft made succesfully$(NOC)"
 
+tmp:
+		@mkdir -p objs
+
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER)
-	@$(CC) $(FLAGS) -c -o $@ $<
-	@echo "$(CYAN)Creation of object file -> $(CYAN)$(notdir $@)... $(GREEN)[Done]$(NOC)"
+		@$(CC) $(FLAGS) -c -o $@ $<
+		@echo "$(CYAN)Creation of object file -> $(CYAN)$(notdir $@)... $(GREEN)[Done]$(NOC)"
 
 clean:
-		rm -f $(OBJS)
+		rm -rf $(OBJ_PATH)
+
 
 fclean:		clean
 		rm -f $(NAME)
 
-re:		fclean $(NAME)
+re:		fclean all
 
 .PHONY:		all clean fclean re bonus
