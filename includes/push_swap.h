@@ -53,6 +53,7 @@ t_lelem	*fill_index(t_lelem *a, int i_min, int ac, char **av);
 int		index_of_min(int ac, char **av);
 int		next_min_in(int c_min, int ac, char **av);
 int		first_max(int c_min, int ac, char **av);
+int		check_good_init_order(t_ps	*ps);
 
 /*-----------------------error-----------------*/
 
@@ -148,6 +149,10 @@ int		grup_min(int group, int c_stack, t_ps *ps);
 int		len_grup(int group, int c_stack, t_ps *ps);
 int		len_gr_a(int group, t_ps *ps);
 int		len_gr_b(int group, t_ps *ps);
+int		indx_grup_h_a(int group, t_ps *ps);
+int		indx_grup_h_b(int group, t_ps *ps);
+int		indx_grup_l_a(int group, t_ps *ps);
+int		indx_grup_l_b(int group, t_ps *ps);
 
 /*-----------------attracts----------------------*/
 

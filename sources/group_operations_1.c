@@ -13,59 +13,33 @@
 
 /* returns the higher index of a group, set c_stack = 1 for search in the */
 /* stack a or 2 for search in b. */
-/*  Returns elem_num -1 if the group doesn't exist in the stack */
+/* Returns -1 if the group doesn't exist in the stack or something bad */
+/* happens */
 int	indx_grup_h(int group, int c_stack, t_ps *ps)
 {
 	int	res;
 
-	res = ps->elem_num + 1;
+	res = -1;
 	if (c_stack == 1)
-	{
-		while (res >= 0)
-		{
-			if (ps->stack_a[res].grp == group && ps->stack_a[res].is_high == 1)
-				return (res);
-		res--;
-		}
-	}
+		res = indx_grup_h_a(group, ps);
 	if (c_stack == 2)
-	{
-		while (res >= 0)
-		{
-			if (ps->stack_b[res].grp == group && ps->stack_b[res].is_high == 1)
-				return (res);
-			res--;
-		}
-	}
+		res = indx_grup_h_b(group, ps);
 	return (res);
 }
 
 /* returns the lower index of a group, set c_stack = 1 for search in the */
 /* stack a or 2 for search in b. */
-/* returns -1 if the group doesn't exist in the stack */
+/* Returns -1 if the group doesn't exist in the stack or something bad */
+/* happens */
 int	indx_grup_l(int group, int c_stack, t_ps *ps)
 {
 	int	res;
 
-	res = ps->elem_num + 1;
+	res = -1;
 	if (c_stack == 1)
-	{
-		while (res >= 0)
-		{
-			if (ps->stack_a[res].grp == group && ps->stack_a[res].is_low == 1)
-				return (res);
-			res--;
-		}
-	}
+		res = indx_grup_l_a(group, ps);
 	if (c_stack == 2)
-	{
-		while (res >= 0)
-		{
-			if (ps->stack_b[res].grp == group && ps->stack_b[res].is_low == 1)
-				return (res);
-		res--;
-		}
-	}
+		res = indx_grup_l_b(group, ps);
 	return (res);
 }
 

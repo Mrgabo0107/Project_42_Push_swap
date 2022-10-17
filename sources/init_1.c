@@ -6,7 +6,7 @@
 /*   By: gamoreno <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 04:11:30 by gamoreno          #+#    #+#             */
-/*   Updated: 2022/09/23 17:08:28 by gamoreno         ###   ########.fr       */
+/*   Updated: 2022/10/17 19:14:50 by gamoreno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/push_swap.h"
@@ -22,6 +22,8 @@ void	init_ps(t_ps *ps, int ac, char **av)
 	ps->grp_in_a = 1;
 	ps->grp_in_b = 0;
 	ps->elem_num = ac - 1;
+	if (check_good_init_order(ps) == ps->elem_num)
+		free_ps_exit(ps);
 }
 
 t_lelem	*init_index(t_ps *ps, int ac, char **av)
@@ -52,10 +54,11 @@ t_lelem	*init_zero(t_lelem *stk, int ac)
 	i = 0;
 	while (i < ac)
 	{
-		res->number = 0;
-		res->grp = 0;
-		res->is_high = 0;
-		res->is_low = 0;
+		res[i].number = 0;
+		res[i].grp = 0;
+		res[i].is_high = 0;
+		res[i].is_low = 0;
+		res[i].c_stack = 0;
 		i++;
 	}
 	return (res);

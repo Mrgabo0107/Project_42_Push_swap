@@ -49,6 +49,7 @@ SOURCES =	main.c\
 			split_helpers_2.c\
 			group_operations_1.c\
 			group_operations_2.c\
+			group_operations_helpers.c\
 			attracts_1.c\
 			attracts_2.c
 	
@@ -67,8 +68,7 @@ CYAN        = \033[1;36m
 all: lib tmp $(NAME)
 
 lib:
-	@echo "$(GREEN)Creating lib files$(NOC)"
-	@make -C $(LIBFT)
+	@make --no-print-directory -C $(LIBFT)
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) -L $(LIBFT) -o $@ $^ -l:libft.a 
